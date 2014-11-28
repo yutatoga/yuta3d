@@ -13,14 +13,22 @@
 	<script src="./js/OBJLoader.js"></script>
 	<script src="./js/OrbitControls.js"></script>
 	<script>
-	init();
-	animate();
 
-	function init() {
-		width = window.innerWidth;
-		height = window.innerHeight;
+    window.addEventListener("load", function(){
+        threeStart();
+    });
 
-		scene = new THREE.Scene();
+    function threeStart(){
+        init();
+        animate();
+    }
+
+    function init() {
+        canvasFrame = document.getElementById('canvas-frame');
+        width = canvasFrame.clientWidth;
+        height = canvasFrame.clientHeight;
+
+        scene = new THREE.Scene();
 
     // var ambient = new THREE.AmbientLight( 0x101030 );
     // scene.add( ambient );
@@ -105,7 +113,7 @@
     controls.autoRotate = true;     //true:自動回転する,false:自動回転しない
     controls.autoRotateSpeed = 2.0;    //自動回転する時の速度
     renderer.setSize( width, height );
-    document.body.appendChild( renderer.domElement );  
+    canvasFrame.appendChild( renderer.domElement );  
 }
 
 function animate() {
@@ -114,5 +122,6 @@ function animate() {
 	controls.update();
 }
 </script>
+<div id = 'canvas-frame'></div>
 </body>
 </html>
